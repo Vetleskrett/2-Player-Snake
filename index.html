@@ -1,0 +1,91 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="libraries/p5.min.js"></script>
+  <script language="javascript" src="libraries/p5.dom.min.js"></script>
+  <script language="javascript" src="libraries/p5.sound.min.js"></script>
+  <script language="javascript" type="text/javascript" src="snake.js"></script>
+  <script language="javascript" type="text/javascript" src="functions.js"></script>
+  <script language="javascript" type="text/javascript" src="preload.js"></script>
+  <script language="javascript" type="text/javascript" src="setup.js"></script>
+  <script language="javascript" type="text/javascript" src="sketch.js"></script>
+  <link type="text/css" href="stylesheet.css" rel="stylesheet">
+</head>
+
+<body>
+  <input type="checkbox" id="soundButton">
+  <div id="menu">
+    <p id="signature">A game by:<br>Vetle Malmin Skretting</p>
+    <h1 id="title">2 Player Snake</h1>
+    <div id="playerSpecs">
+      <div class="playerSpecs">
+        <input type="text" value="Player 1" class="nameInput" id="p1name" maxlength="8"></input>
+        <div class="colorDiv">
+          <div class="colorBox r" id="p1r"></div>
+          <div class="colorBox g" id="p1g"></div>
+          <div class="colorBox b" id="p1b"></div>
+        </div>
+      </div>
+      <img src="pictures/vs.png" id="vs">
+      <div class="playerSpecs">
+        <input type="text" value="Player 2" class="nameInput" id="p2name" maxlength="8"></input>
+        <div class="colorDiv">
+          <div class="colorBox r" id="p2r"></div>
+          <div class="colorBox g" id="p2g"></div>
+          <div class="colorBox b" id="p2b"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sliderDiv">
+      <h2 class="sliderTitle">Game Area</h2>
+      <input type="range" min="1" max="5" value="3" class="slider" id="gameArea">
+      <div class="sliderValuesDiv">
+        <h3 class="sliderValue">Tiny</h3>
+        <h3 class="sliderValue">Small</h3>
+        <h3 class="sliderValue">Normal</h3>
+        <h3 class="sliderValue">Big</h3>
+        <h3 class="sliderValue">Huge</h3>
+      </div>
+    </div>
+    <div class="sliderDiv">
+      <h2 class="sliderTitle">Speed</h2>
+      <input type="range" min="1" max="5" value="3" class="slider" id="speed">
+      <div class="sliderValuesDiv">
+        <h3 class="sliderValue">Boring</h3>
+        <h3 class="sliderValue">Slow</h3>
+        <h3 class="sliderValue">Normal</h3>
+        <h3 class="sliderValue">Fast</h3>
+        <h3 class="sliderValue">Sonic</h3>
+      </div>
+    </div>
+    <div class="sliderDiv">
+      <h2 class="sliderTitle">Points to win</h2>
+      <input type="range" min="1" max="5" value="3" class="slider" id="winScore">
+      <div class="sliderValuesDiv">
+        <h3 class="sliderValue">1</h3>
+        <h3 class="sliderValue">3</h3>
+        <h3 class="sliderValue">5</h3>
+        <h3 class="sliderValue">10</h3>
+        <div class="sliderValue">
+          <img src="pictures/infinity.png" id="infinity">
+        </div>
+      </div>
+    </div>
+    <button id="play">PLAY</button>
+  </div>
+  <div id="game">
+    <button id="backToMenu" onclick="toMenu()">MENU</button>
+    <div class="info" id="p1">
+      <h2 class="infoHeader" id="p1Header"></h2>
+      <p class="score" id="p1Score"> </p>
+    </div>
+    <div id="canvasArea"></div>
+    <div class="info" id="p2">
+      <h2 class="infoHeader" id="p2Header"></h2>
+      <p class="score" id="p2Score"> </p>
+    </div>
+  </div>
+</body>
+
+</html>

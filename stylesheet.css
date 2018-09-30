@@ -1,0 +1,259 @@
+#p5_loading {
+  display: none
+}
+
+body {
+  font-family: "Andale Mono", monospace;
+  background: white;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+}
+
+#backToMenu {
+  font-family: "Andale Mono", monospace;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: 50px;
+  top: 8px;
+  cursor: pointer;
+  height: 35;
+  width: 70px;
+  background: rgb(220, 220, 220);
+  border: rgb(180, 180, 180) solid 1px;
+  box-shadow: none;
+  border-radius: 8px;
+  opacity: .9;
+  outline: 0;
+  font-size: 22px
+}
+
+#backToMenu:hover {
+  opacity: 1;
+  border: rgb(160, 160, 160) solid 1px
+}
+
+#signature {
+  position: absolute;
+  bottom: -9px;
+  left: 4px;
+  font-size: 12px
+}
+
+#soundButton {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  cursor: pointer;
+  width: 35;
+  height: 35;
+  background: rgb(220, 220, 220);
+  background-image: url(pictures/audio.png);
+  background-repeat: no-repeat;
+  background-size: 26px;
+  background-position: center;
+  border: rgb(180, 180, 180) solid 1px;
+  box-shadow: none;
+  border-radius: 8px;
+  opacity: .9;
+  outline: 0
+}
+
+#soundButton:checked {
+  background-image: url(pictures/no-audio.png)
+}
+
+#soundButton:hover {
+  opacity: 1;
+  border: rgb(160, 160, 160) solid 1px
+}
+
+#menu {
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+#title {
+  font-family: "Andale Mono", monospace;
+  font-size: 100px;
+  color: black;
+  margin-top: 0;
+  margin-bottom: 10px
+}
+
+#playerSpecs {
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+
+.playerSpecs {
+  display: flex;
+  flex-direction: column;
+  margin: 0 30px 0 30px
+}
+
+.nameInput {
+  width: 180px;
+  height: 36px;
+  font-size: 25px;
+  margin-top: 16px;
+  border: black solid 1px;
+  padding: 4px;
+  font-family: "Andale Mono", monospace
+}
+
+#vs {
+  width: 70px;
+  align-self: flex-start
+}
+
+.colorDiv {
+  display: flex;
+  justify-content: space-around
+}
+
+.colorBox {
+  opacity: .9;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin-top: 6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: white solid 2px
+}
+
+.r {
+  background-color: rgb(255, 30, 30)
+}
+
+.g {
+  background-color: rgb(0, 210, 0)
+}
+
+.b {
+  background-color: rgb(60, 80, 255)
+}
+
+.sliderTitle {
+  font-size: 28px;
+  margin: 8px
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 500px;
+  height: 10px;
+  border-radius: 6px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: .7;
+  -webkit-transition: .2s;
+  transition: opacity .2s
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgb(0, 120, 255);
+  cursor: pointer
+}
+
+.slider:hover {
+  opacity: 1
+}
+
+.sliderValuesDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center
+}
+
+.sliderValue {
+  width: 119px;
+  margin-top: 4px;
+  margin-bottom: 5px;
+  font-size: 15px
+}
+
+#infinity {
+  width: 18px;
+  height: 14px
+}
+
+.sliderDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 6px;
+  padding: 0
+}
+
+#play {
+  font-family: "Andale Mono", monospace;
+  width: 160px;
+  height: 60px;
+  font-size: 34px;
+  border-radius: 10px;
+  border: rgb(180, 180, 180) solid 1px;
+  box-shadow: none;
+  -webkit-transition: .2s;
+  transition: background-color .2s;
+  transition: box-shadow .2s;
+  background: rgb(225, 225, 225)
+}
+
+#play:hover {
+  opacity: 1;
+  background: rgb(215, 215, 215);
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .24), 0 4px 12px 0 rgba(0, 0, 0, .19);
+  cursor: pointer
+}
+
+#game {
+  display: none;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  width: 100%
+}
+
+#defaultCanvas0 {
+  border: black solid 2px
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: 110px;
+  font-size: 100px;
+  width: 100%
+}
+
+.infoHeader {
+  font-size: 40px;
+  margin-bottom: 30px
+}
+
+.score {
+  margin: 0
+}
