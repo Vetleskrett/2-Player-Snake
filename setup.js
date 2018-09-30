@@ -1,4 +1,7 @@
 function setup() {
+  unity.setLoop(true);
+  unity.play();
+  unity.setVolume(0.5, 1);
   soundButton = document.getElementById("soundButton");
   soundButton.addEventListener("mousedown", function() {
     if (this.checked) {
