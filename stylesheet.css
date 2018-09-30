@@ -5,7 +5,7 @@
 body {
   font-family: "Andale Mono", monospace;
   background: white;
-  margin: 0;
+  margin: 0px;
   display: flex;
   flex-direction: column;
   justify-content: center
@@ -20,14 +20,14 @@ body {
   left: 50px;
   top: 8px;
   cursor: pointer;
-  height: 35;
+  height: 35px;
   width: 70px;
   background: rgb(220, 220, 220);
   border: rgb(180, 180, 180) solid 1px;
   box-shadow: none;
   border-radius: 8px;
   opacity: .9;
-  outline: 0;
+  outline: 0px;
   font-size: 22px
 }
 
@@ -51,8 +51,8 @@ body {
   left: 5px;
   top: 5px;
   cursor: pointer;
-  width: 35;
-  height: 35;
+  width: 35px;
+  height: 35px;
   background: rgb(220, 220, 220);
   background-image: url(pictures/audio.png);
   background-repeat: no-repeat;
@@ -85,7 +85,7 @@ body {
   font-family: "Andale Mono", monospace;
   font-size: 100px;
   color: black;
-  margin-top: 10;
+  margin-top: 10px;
   margin-bottom: 10px
 }
 
@@ -180,19 +180,19 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  text-align: center
+  text-align: center;
 }
 
 .sliderValue {
   width: 119px;
   margin-top: 4px;
   margin-bottom: 5px;
-  font-size: 15px
+  font-size: 15px;
 }
 
 #infinity {
   width: 18px;
-  height: 14px
+  height: 14px;
 }
 
 .sliderDiv {
@@ -200,7 +200,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 6px;
-  padding: 0
+  padding: 0px;
 }
 
 #play {
@@ -255,5 +255,5 @@ body {
 }
 
 .score {
-  margin: 0
+  margin: 0px;
 }
