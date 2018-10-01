@@ -1,5 +1,5 @@
 function preload() {
-  unity = loadSound("sound/Unity.wav");
+  unity = loadSound("sound/Unity.mp3");
   bite = loadSound("sound/bite.wav");
   hit = loadSound("sound/hit.wav");
   bell = loadSound("sound/bell.mp3");
