@@ -1,5 +1,6 @@
 function setup() {
   soundButton = document.getElementById("soundButton");
+  soundButton.style.display = "block"
   soundButton.addEventListener("mousedown", function() {
     if (this.checked) {
       unity.setVolume(0.5, 1);
