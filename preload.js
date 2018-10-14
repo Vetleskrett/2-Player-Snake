@@ -1,4 +1,5 @@
 function preload() {
+  loadingSpinner = document.getElementById("loadingSpinner")
   unity = loadSound("sound/Unity.mp3");
   bite = loadSound("sound/bite.wav");
   hit = loadSound("sound/hit.wav");

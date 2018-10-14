@@ -6,7 +6,7 @@ let newGame = function() {
   cols = 12 * gameArea.value;
   rows = 8 * gameArea.value;
   w = width / cols;
-  frameRate(pow(2, speed.value));
+  frameRate(pow(speed.value, 2));
   if (winScoreSlider.value == 1) {
     winScore = 1;
   } else if (winScoreSlider.value == 2) {
@@ -18,6 +18,7 @@ let newGame = function() {
   } else if (winScoreSlider.value == 5) {
     winScore = Infinity;
   };
+  gridArray = createGridArray()
   newSnakes();
   newApple();
   drawFrame();
@@ -30,11 +31,11 @@ let newGame = function() {
     if (game.style.display == "flex" && volume) {
       bell.play()
     }
-  }, 1000)
+  }, 800)
 };
 let newSnakes = function() {
-  snake1 = new Snake(1, 3, p1color);
-  snake2 = new Snake(cols - 2, 3, p2color)
+  snake1 = new Snake(1, 3, p1color, cpu1.checked, cpu1diff.value);
+  snake2 = new Snake(cols - 2, 3, p2color, cpu2.checked, cpu2diff.value)
 };
 let toGame = function() {
   menu.style.display = "none";
@@ -52,7 +53,7 @@ let drawFrame = function() {
   background(240, 240, 215);
   showApple();
   snake1.show();
-  snake2.show()
+  snake2.show();
 };
 let newRound = function() {
   if (snake1.dead && !snake2.dead) {
@@ -66,6 +67,7 @@ let newRound = function() {
       ding.play()
     }
   };
+  drawFrame()
   let string;
   if (snake1Score < winScore && snake2Score < winScore) {
     if (snake1.dead && snake2.dead) {
@@ -96,8 +98,9 @@ let newRound = function() {
       };
       string = "Point " + p1name.value
     }
-    newApple();
+    gridArray = createGridArray()
     newSnakes();
+    newApple();
     setTimeout(drawFrame, 1500);
     setTimeout(function() {
       if (game.style.display == "flex") {
@@ -130,7 +133,9 @@ let newRound = function() {
   stroke(0);
   strokeWeight(4);
   textSize(80);
-  text(string, width / 2, height / 2)
+  setTimeout(function() {
+    text(string, width / 2, height / 2)
+  }, 300)
 }
 let newApple = function() {
   apple.x = floor(random(cols));
@@ -157,10 +162,10 @@ let newApple = function() {
       apple.x++;
       if (apple.x >= cols) {
         apple.x = 0;
-        apple.y++
-          if (apple.y >= rows) {
-            apple.y = 0
-          }
+        apple.y++;
+        if (apple.y >= rows) {
+          apple.y = 0
+        }
       }
     } else {
       break
@@ -175,9 +180,59 @@ let updateInfo = function() {
   p2Score.innerHTML = snake2Score
 };
 
+let distance = function(x1, y1, x2, y2) {
+  return abs(x1 - x2) + abs(y1 - y2)
+}
+
+let createGridArray = function() {
+  let arr = []
+  for (let x = 0; x < cols; x++) {
+    let col = []
+    for (let y = 0; y < rows; y++) {
+      let obj = {
+        x: x,
+        y: y,
+        g: Infinity,
+        f: Infinity,
+        snake: false,
+        closed: false
+      }
+      let neighbours = []
+      if (x > 0) {
+        neighbours.push({
+          x: x - 1,
+          y: y
+        })
+      }
+      if (y > 0) {
+        neighbours.push({
+          x: x,
+          y: y - 1
+        })
+      }
+      if (x < cols - 1) {
+        neighbours.push({
+          x: x + 1,
+          y: y
+        })
+      }
+      if (y < rows - 1) {
+        neighbours.push({
+          x: x,
+          y: y + 1
+        })
+      }
+      obj.neighbours = neighbours
+      col.push(obj)
+    }
+    arr.push(col)
+  }
+  return arr.slice()
+}
+
 function keyPressed() {
   if (gameLoop) {
-    if (snake2.changedDir) {
+    if (snake2.changedDir && !snake2.cpu) {
       if (keyCode === 40) {
         if (snake2.direction !== "up" && snake2.direction !== "down") {
           snake2.direction = "down";
@@ -216,7 +271,7 @@ function keyPressed() {
         }
       }
     };
-    if (snake1.changedDir) {
+    if (snake1.changedDir && !snake1.cpu) {
       if (keyCode === 83) {
         if (snake1.direction !== "up" && snake1.direction !== "down") {
           snake1.direction = "down";

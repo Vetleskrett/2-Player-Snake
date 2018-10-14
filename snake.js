@@ -1,5 +1,5 @@
 let Snake = class {
-  constructor(x, y, color) {
+  constructor(x, y, color, cpu, diff) {
     this.tail = [{
       x: x,
       y: y
@@ -10,6 +10,10 @@ let Snake = class {
       x: x,
       y: y - 2
     }];
+    gridArray[x][y].snake = true
+    gridArray[x][y - 1].snake = true
+    gridArray[x][y - 2].snake = true
+
     this.color = color;
     this.direction = "down";
     this.changedDir = true;
@@ -18,8 +22,126 @@ let Snake = class {
       x: this.tail[0].x,
       y: this.tail[0].y
     }
+    this.cpu = cpu
+    if (this.cpu) {
+      this.path = []
+      this.updateFrequency = 7 - (diff * 2)
+    }
   };
-  update() {
+  newPath() {
+    let needNew = false
+    if (this.path.length == 0 || frameCount % this.updateFrequency == 0) {
+      needNew = true
+    }
+    if (needNew) {
+      this.path = []
+      let g = 0
+      let h = distance(this.tail[0].x, this.tail[0].y, apple.x, apple.y)
+      let f = g + h
+      let openSet = []
+      for (let i = 0; i < gridArray.length; i++) {
+        let col = []
+        for (let j = 0; j < gridArray[i].length; j++) {
+          let obj = Object.assign({}, gridArray[i][j])
+          col.push(obj)
+        }
+        openSet.push(col)
+      }
+      openSet[this.tail[0].x][this.tail[0].y].g = g
+      openSet[this.tail[0].x][this.tail[0].y].h = h
+      openSet[this.tail[0].x][this.tail[0].y].f = f
+      openSet[this.tail[0].x][this.tail[0].y].camefrom = null
+
+      let finished = false
+
+      while (!finished) {
+        let node = {
+          f: Infinity
+        }
+        for (let i = 0; i < openSet.length; i++) {
+          for (let j = 0; j < openSet[i].length; j++) {
+            if (openSet[i][j].f < node.f && !openSet[i][j].closed) {
+              node = openSet[i][j]
+            }
+          }
+        }
+
+        if (node.f === Infinity) {
+          finished = true
+          let neighbours = openSet[this.tail[0].x][this.tail[0].y].neighbours
+          let arr = []
+          for (let i = 0; i < neighbours.length; i++) {
+            let current = openSet[neighbours[i].x][neighbours[i].y]
+            if (!current.snake) {
+              arr.push(neighbours[i])
+            }
+          }
+          if (arr.length > 0) {
+            let cell = arr[0]
+            this.path = [{
+              x: cell.x,
+              y: cell.y
+            }]
+          }
+        } else {
+          for (let i = 0; i < node.neighbours.length; i++) {
+            let current = openSet[node.neighbours[i].x][node.neighbours[i].y]
+            if (!current.snake && !current.closed) {
+              let g = node.g + 1
+              if (current.g > g) {
+                let h = distance(current.x, current.y, apple.x, apple.y)
+                let f = g + h
+                current.g = g
+                current.h = h
+                current.f = f
+                current.camefrom = {
+                  x: node.x,
+                  y: node.y
+                }
+                if (h === 0) {
+                  finished = true
+                  while (current.camefrom !== null) {
+                    this.path.push({
+                      x: current.x,
+                      y: current.y
+                    })
+                    current = openSet[current.camefrom.x][current.camefrom.y]
+                  }
+                  this.path.reverse()
+                }
+              }
+            }
+          }
+          node.closed = true
+        }
+      }
+    }
+  }
+  cpuUpdate() {
+    if (this.path.length > 0) {
+      this.newHead = {
+        x: this.path[0].x,
+        y: this.path[0].y,
+      }
+      this.path.shift()
+
+      let xdiff1 = this.newHead.x - this.tail[0].x
+      let xdiff2 = this.tail[0].x - this.tail[1].x
+
+      let ydiff1 = this.newHead.y - this.tail[0].y
+      let ydiff2 = this.tail[0].y - this.tail[1].y
+
+      if (xdiff1 != xdiff2 || ydiff1 != ydiff2) {
+        if (volume) {
+          turn.setVolume(0.8)
+          turn.play();
+        };
+      }
+    } else {
+      this.dead = true
+    }
+  }
+  playerUpdate() {
     this.changedDir = true;
     this.newHead = {
       x: this.tail[0].x,
@@ -61,14 +183,15 @@ let Snake = class {
     }
   };
   move() {
-    if (!snake1.dead && !snake2.dead) {
+    if (!this.dead) {
       if (apple.x != this.newHead.x || apple.y != this.newHead.y) {
+        gridArray[this.tail[this.tail.length - 1].x][this.tail[this.tail.length - 1].y].snake = false
         this.tail.pop();
         this.tail.unshift(this.newHead)
       } else {
         if (volume) {
           bite.play()
-        };
+        }
         newApple()
         if (snake1.tail[snake1.tail.length - 1].x == this.newHead.x && snake1.tail[snake1.tail.length - 1].y == this.newHead.y) {
           this.dead = true
@@ -78,6 +201,7 @@ let Snake = class {
           this.tail.unshift(this.newHead)
         }
       }
+      gridArray[this.newHead.x][this.newHead.y].snake = true
     }
   };
   show() {

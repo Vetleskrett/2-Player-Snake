@@ -1,4 +1,5 @@
 function setup() {
+  loadingSpinner.style.display = "none"
   soundButton = document.getElementById("soundButton");
   soundButton.style.display = "block"
   soundButton.addEventListener("mousedown", function() {
@@ -27,7 +28,7 @@ function setup() {
   });
   p1r.addEventListener("mouseout", function() {
     if (p1color != "red") {
-      p1r.style.border = "white solid 2px";
+      p1r.style.border = "transparent solid 2px";
       p1r.style.opacity = 0.9
     }
   });
@@ -35,8 +36,8 @@ function setup() {
     if (p1color != "red") {
       p1color = "red";
       p1r.style.border = "black solid 2px";
-      p1g.style.border = "white solid 2px";
-      p1b.style.border = "white solid 2px";
+      p1g.style.border = "transparent solid 2px";
+      p1b.style.border = "transparent solid 2px";
       p1r.style.opacity = 1;
       p1g.style.opacity = 0.9;
       p1b.style.opacity = 0.9
@@ -44,8 +45,8 @@ function setup() {
   });
   p1color = "red";
   p1r.style.border = "black solid 2px";
-  p1g.style.border = "white solid 2px";
-  p1b.style.border = "white solid 2px";
+  p1g.style.border = "transparent solid 2px";
+  p1b.style.border = "transparent solid 2px";
   p1r.style.opacity = 1;
   p1g.style.opacity = 0.9;
   p1b.style.opacity = 0.9;
@@ -58,16 +59,16 @@ function setup() {
   });
   p1g.addEventListener("mouseout", function() {
     if (p1color != "green") {
-      p1g.style.border = "white solid 2px";
+      p1g.style.border = "transparent solid 2px";
       p1g.style.opacity = 0.9
     }
   });
   p1g.addEventListener("mousedown", function() {
     if (p1color != "green") {
       p1color = "green";
-      p1r.style.border = "white solid 2px";
+      p1r.style.border = "transparent solid 2px";
       p1g.style.border = "black solid 2px";
-      p1b.style.border = "white solid 2px";
+      p1b.style.border = "transparent solid 2px";
       p1r.style.opacity = 0.9;
       p1g.style.opacity = 1;
       p1b.style.opacity = 0.9
@@ -82,15 +83,15 @@ function setup() {
   });
   p1b.addEventListener("mouseout", function() {
     if (p1color != "blue") {
-      p1b.style.border = "white solid 2px";
+      p1b.style.border = "transparent solid 2px";
       p1b.style.opacity = 0.9
     }
   });
   p1b.addEventListener("mousedown", function() {
     if (p1color != "blue") {
       p1color = "blue";
-      p1r.style.border = "white solid 2px";
-      p1g.style.border = "white solid 2px";
+      p1r.style.border = "transparent solid 2px";
+      p1g.style.border = "transparent solid 2px";
       p1b.style.border = "black solid 2px";
       p1r.style.opacity = 0.9;
       p1g.style.opacity = 0.9;
@@ -106,7 +107,7 @@ function setup() {
   });
   p2r.addEventListener("mouseout", function() {
     if (p2color != "red") {
-      p2r.style.border = "white solid 2px";
+      p2r.style.border = "transparent solid 2px";
       p2r.style.opacity = 0.9
     }
   });
@@ -114,8 +115,8 @@ function setup() {
     if (p2color != "red") {
       p2color = "red";
       p2r.style.border = "black solid 2px";
-      p2g.style.border = "white solid 2px";
-      p2b.style.border = "white solid 2px";
+      p2g.style.border = "transparent solid 2px";
+      p2b.style.border = "transparent solid 2px";
       p2r.style.opacity = 1;
       p2g.style.opacity = 0.9;
       p2b.style.opacity = 0.9
@@ -130,16 +131,16 @@ function setup() {
   });
   p2g.addEventListener("mouseout", function() {
     if (p2color != "green") {
-      p2g.style.border = "white solid 2px";
+      p2g.style.border = "transparent solid 2px";
       p2g.style.opacity = 0.9
     }
   });
   p2g.addEventListener("mousedown", function() {
     if (p2color != "green") {
       p2color = "green";
-      p2r.style.border = "white solid 2px";
+      p2r.style.border = "transparent solid 2px";
       p2g.style.border = "black solid 2px";
-      p2b.style.border = "white solid 2px";
+      p2b.style.border = "transparent solid 2px";
       p2r.style.opacity = 0.9;
       p2g.style.opacity = 1;
       p2b.style.opacity = 0.9
@@ -154,15 +155,15 @@ function setup() {
   });
   p2b.addEventListener("mouseout", function() {
     if (p2color != "blue") {
-      p2b.style.border = "white solid 2px";
+      p2b.style.border = "transparent solid 2px";
       p2b.style.opacity = 0.9
     }
   });
   p2b.addEventListener("mousedown", function() {
     if (p2color != "blue") {
       p2color = "blue";
-      p2r.style.border = "white solid 2px";
-      p2g.style.border = "white solid 2px";
+      p2r.style.border = "transparent solid 2px";
+      p2g.style.border = "transparent solid 2px";
       p2b.style.border = "black solid 2px";
       p2r.style.opacity = 0.9;
       p2g.style.opacity = 0.9;
@@ -170,12 +171,70 @@ function setup() {
     }
   });
   p2color = "blue";
-  p2r.style.border = "white solid 2px";
-  p2g.style.border = "white solid 2px";
+  p2r.style.border = "transparent solid 2px";
+  p2g.style.border = "transparent solid 2px";
   p2b.style.border = "black solid 2px";
   p2r.style.opacity = 0.9;
   p2g.style.opacity = 0.9;
   p2b.style.opacity = 1;
+
+  //-------------------------------------------------------
+  sliderStyle1 = document.querySelector('[data="1"]');
+  sliderStyle2 = document.querySelector('[data="2"]');
+  cpu1diffDiv = document.getElementById("cpu1diffDiv")
+  cpu1diff = document.getElementById("cpu1diff")
+  cpu1diff.disabled = true
+  cpu1diff.style.cursor = "default"
+  cpu1diffDiv.style.color = "grey"
+  sliderStyle1.innerHTML = "#cpu1diff::-webkit-slider-thumb { background: grey; }";
+  sliderStyle2.innerHTML = "#cpu1diff:hover { opacity: .7; }";
+  cpu1 = document.getElementById("cpu1")
+  cpu1.addEventListener("change", function() {
+    cpu1diff.disabled = !cpu1.checked
+    if (cpu1.checked) {
+      cpu1diffDiv.style.color = "black"
+      sliderStyle1.innerHTML = "#cpu1diff::-webkit-slider-thumb { background: rgb(0, 120, 255); }";
+      sliderStyle2.innerHTML = "#cpu1diff:hover { opacity: 1; }";
+      cpu1diff.style.cursor = "pointer"
+
+    } else {
+      cpu1diffDiv.style.color = "grey"
+      sliderStyle1.innerHTML = "#cpu1diff::-webkit-slider-thumb { background: grey; }";
+      sliderStyle2.innerHTML = "#cpu1diff:hover { opacity: .7; }";
+      cpu1diff.style.cursor = "default"
+
+    }
+  })
+
+  //-------------------------------------------------------
+
+  sliderStyle3 = document.querySelector('[data="3"]');
+  sliderStyle4 = document.querySelector('[data="4"]');
+  cpu2diffDiv = document.getElementById("cpu2diffDiv")
+  cpu2diff = document.getElementById("cpu2diff")
+  cpu2diff.disabled = true
+  cpu2diffDiv.style.color = "grey"
+  sliderStyle3.innerHTML = "#cpu2diff::-webkit-slider-thumb { background: grey; }";
+  sliderStyle4.innerHTML = "#cpu2diff:hover { opacity: .7; }";
+  cpu2diff.style.cursor = "default"
+  cpu2 = document.getElementById("cpu2")
+  cpu2.addEventListener("change", function() {
+    cpu2diff.disabled = !cpu2.checked
+    if (cpu2.checked) {
+      cpu2diffDiv.style.color = "black"
+      sliderStyle3.innerHTML = "#cpu2diff::-webkit-slider-thumb { background: rgb(0, 120, 255); }";
+      sliderStyle4.innerHTML = "#cpu2diff:hover { opacity: 1; }";
+      cpu2diff.style.cursor = "pointer"
+    } else {
+      cpu2diffDiv.style.color = "grey"
+      sliderStyle3.innerHTML = "#cpu2diff::-webkit-slider-thumb { background: grey; }";
+      sliderStyle4.innerHTML = "#cpu2diff:hover { opacity: .7; }";
+      cpu2diff.style.cursor = "default"
+    }
+  })
+
+  //-------------------------------------------------------
+
   gameArea = document.getElementById("gameArea");
   speed = document.getElementById("speed");
   winScoreSlider = document.getElementById("winScore");
