@@ -12,7 +12,6 @@ let Snake = class {
     }];
     gridArray[x][y].snake = true
     gridArray[x][y - 1].snake = true
-    gridArray[x][y - 2].snake = true
 
     this.color = color;
     this.direction = "down";
@@ -185,7 +184,7 @@ let Snake = class {
   move() {
     if (!this.dead) {
       if (apple.x != this.newHead.x || apple.y != this.newHead.y) {
-        gridArray[this.tail[this.tail.length - 1].x][this.tail[this.tail.length - 1].y].snake = false
+        gridArray[this.tail[this.tail.length - 2].x][this.tail[this.tail.length - 2].y].snake = false
         this.tail.pop();
         this.tail.unshift(this.newHead)
       } else {
