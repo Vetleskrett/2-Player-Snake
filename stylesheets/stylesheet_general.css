@@ -1,0 +1,96 @@
+*{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: "Andale Mono", monospace;
+    -webkit-text-stroke-color: black;
+}
+
+@keyframes changeColour {
+    0% {
+        background-color: #2de4bd;
+    }
+
+    20% {
+        background-color: #33dfe9;
+    }
+
+    40% {
+        background-color: #5694ff;
+    }
+
+    60% {
+        background-color: #cf8ff9;
+    }
+
+    80% {
+        background-color: #5a86ff;
+    }
+
+    100% {
+        background-color: #2de4bd;
+    }
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+
+    animation: changeColour 20s infinite;
+}
+
+#picturesWrapper{
+    display: none;
+}
+
+#startPage{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#startPagePlayButton{
+    width: 30%;
+    height: 30%;
+    transition: transform 100ms;
+}
+
+#startPagePlayButton:hover{
+    transform: scale(1.2);
+}
+
+.static{
+    position: fixed;
+    display: none;
+}
+
+#audioButton{
+    top: 1vh;
+    left: 0.75vw;
+    background-color: #F8F8F8;
+    border-color: black;
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+#audioButton:hover{
+    transform: scale(1.1);
+    background-color: #F0F0F0;
+}
+
+#audioButtonImg{
+    width: 70%;
+    height: 70%;
+}
+
+#gameCredit{
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 15px;
+    bottom: 0.5vh;
+    left: 0.5vw;
+}

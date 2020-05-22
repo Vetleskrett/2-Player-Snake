@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2 Player Snake</title>
+    <link rel="stylesheet" href="stylesheets/stylesheet_general.css">
+    <link rel="stylesheet" href="stylesheets/stylesheet_mainMenu.css">
+    <link rel="stylesheet" href="stylesheets/stylesheet_game.css">
+</head>
+<body>
+
+    <div id="picturesWrapper">
+        <img src="pictures/apple.png" id="appleImg">
+    </div>
+
+    <div id="audioWrapper">
+        <audio id="backgroundMusic" loop>
+            <source src="audio/Unity.mp3">
+        </audio>
+        <audio id="hitSFX">
+            <source src="audio/hit.mp3">
+        </audio>
+        <audio id="biteSFX">
+            <source src="audio/bite.mp3">
+        </audio>
+        <audio id="turnSFX">
+            <source src="audio/turn.mp3">
+        </audio>
+        <audio id="pointSFX">
+            <source src="audio/point.mp3">
+        </audio>
+        <audio id="winSFX">
+            <source src="audio/win.mp3">
+        </audio>
+    </div>
+
+    <div id="startPage">
+        <img src="pictures/play.svg" id="startPagePlayButton">
+    </div>
+
+    <div id="audioButton" class="static">
+        <img src="pictures/audio.png" id="audioButtonImg">
+    </div>
+
+    <p id="gameCredit" class="static">A game by:<br>Vetle Malmin Skretting</p>
+
+    <div id="mainMenuPage">
+
+        <h1 id="title">2 Player Snake</h1>
+
+        <div id="settingsWrapper">
+            <div id="playerSettingsWrapper" class="settingsWrapper">
+
+                <div id="numOfPlayersWrapper">
+                    <div class="numOfPlayersButton">
+                        <input type="radio" class="numOfPlayersRadio" name="numOfPlayers" value="0" id="0player">
+                        <label class="numOfPlayersLabel" for="0player">0 Player</label>
+                    </div>
+                    <div class="numOfPlayersButton">
+                        <input type="radio" class="numOfPlayersRadio" name="numOfPlayers" value="1" id="1player" checked>
+                        <label class="numOfPlayersLabel" for="1player">1 Player</label>
+                    </div>
+                    <div class="numOfPlayersButton">
+                        <input type="radio" class="numOfPlayersRadio" name="numOfPlayers" value="2" id="2player">
+                        <label class="numOfPlayersLabel" for="2player">2 Player</label>
+                    </div>
+                </div>
+
+                <div id="colourSettingsWrapper">
+                    <div class="playerColourSettingsWrapper">
+                        <p>Snake 1</p>
+                        <div class="colourBoxWrapper" id="player1colour">
+                            <input type="radio" class="colourBox red" name="player1colour" value="red" checked>
+                            <input type="radio" class="colourBox green" name="player1colour" value="green">
+                            <input type="radio" class="colourBox blue" name="player1colour" value="blue">
+                        </div>
+                    </div>
+                    <div class="playerColourSettingsWrapper">
+                        <p>Snake 2</p>
+                        <div class="colourBoxWrapper" id="player2colour">
+                            <input type="radio" class="colourBox red" name="player2colour" value="red">
+                            <input type="radio" class="colourBox green" name="player2colour" value="green">
+                            <input type="radio" class="colourBox blue" name="player2colour" value="blue" checked>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sliderWrapper" id="difficultySliderWrapper">
+                    <h2 class="sliderTitle">Difficulty</h2>
+                    <input type="range" min="0" max="2" value="1" class="slider sliderHover" id="difficultySlider">
+                    <div class="sliderValueWrapper" id="difficultySliderValueWrapper">
+                        <p class="sliderValue">Easy</p>
+                        <p class="sliderValue">Normal</p>
+                        <p class="sliderValue">Hard</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="gameSettingsWrapper" class="settingsWrapper">
+
+                <div class="sliderWrapper">
+                    <h2 class="sliderTitle">Game Area</h2>
+                    <input type="range" min="0" max="4" value="2" class="slider sliderHover" id="gameAreaSlider">
+                    <div class="sliderValueWrapper">
+                        <p class="sliderValue">Tiny</p>
+                        <p class="sliderValue">Small</p>
+                        <p class="sliderValue">Normal</p>
+                        <p class="sliderValue">Big</p>
+                        <p class="sliderValue">Huge</p>
+                    </div>
+                </div>
+
+                <div class="sliderWrapper">
+                    <h2 class="sliderTitle">Speed</h2>
+                    <input type="range" min="0" max="4" value="2" class="slider sliderHover" id="speedSlider">
+                    <div class="sliderValueWrapper">
+                        <p class="sliderValue">Boring</p>
+                        <p class="sliderValue">Slow</p>
+                        <p class="sliderValue">Normal</p>
+                        <p class="sliderValue">Fast</p>
+                        <p class="sliderValue">Sonic</p>
+                    </div>
+                </div>
+
+                <div class="sliderWrapper">
+                    <h2 class="sliderTitle">Points to win</h2>
+                    <input type="range" min="0" max="4" value="2" class="slider sliderHover" id="pointsToWinSlider">
+                    <div class="sliderValueWrapper">
+                        <p class="sliderValue">1</p>
+                        <p class="sliderValue">3</p>
+                        <p class="sliderValue">5</p>
+                        <p class="sliderValue">10</p>
+                        <p class="sliderValue" id="infinitySliderValue">∞</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="playButton">PLAY</div>
+
+    </div>
+
+    <div id="gamePage">
+
+        <div id="menuButton">Menu</div>
+
+        <div id="leftSideInfo" class="sideInfo">
+
+            <div class="sideInfoTop"></div>
+
+            <div id="player1statsWrapper" class="statsWrapper">
+                <h1 class="statsTitle">Player 1</h1>
+                <div id="player1stats" class="stats">
+                    <h2 id="snake1points" class="points">0</h2>
+                    <h2 class="pt">pt</h2>
+                </div>
+            </div>
+
+            <div class="keysWrapper">
+                <div class="keysTop">
+                    <div class="key" id="w">W</div>
+                </div>
+                <div class="keyBottom">
+                    <div class="key" id="a">A</div>
+                    <div class="key" id="s">S</div>
+                    <div class="key" id="d">D</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="gameAreaWrapper">
+            <h1 id="gameAreaText">Point to Player 2</h1>
+            <canvas id="gameArea" width="1200px" height="900px"></canvas>
+        </div>
+
+        <div id="rightSideInfo" class="sideInfo">
+
+            <div id="pointsToWinWrapper" class="sideInfoTop">
+                <p id="pointsToWinStaticText">Points to win:</p>
+                <p id="pointsToWin">5</p>
+            </div>
+
+            <div id="player2statsWrapper" class="statsWrapper">
+                <h1 class="statsTitle">Player 2</h1>
+                <div id="player2stats" class="stats">
+                    <h2 id="snake2points" class="points">0</h2>
+                    <h2 class="pt">pt</h2>
+                </div>
+            </div>
+
+            <div class="keysWrapper">
+                <div class="keysTop">
+                    <div class="key" id="ArrowUp">↑</div>
+                </div>
+                <div class="keyBottom">
+                    <div class="key" id="ArrowLeft">←</div>
+                    <div class="key" id="ArrowDown">↓</div>
+                    <div class="key" id="ArrowRight">→</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="scripts/resize.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/vector2.js"></script>
+    <script src="scripts/aStar.js"></script>
+    <script src="scripts/snake.js"></script>
+    <script src="scripts/game.js"></script>
+
+</body>
+</html>
